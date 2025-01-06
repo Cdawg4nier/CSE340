@@ -24,8 +24,8 @@
   font-size: xx-large;
 }
 
-#tools a:visited, .siteName a:visited, nav li a{
-  color: var(--primary-color-2);
+#tools a:visited, .siteName a:visited{
+  color: var(--primary-color-1);
   text-decoration: none;
 }
 
@@ -50,6 +50,14 @@ nav ul li {
   background-color: var(--primary-color-3);
   color: var(--primary-color-1);
   text-align: center;
+}
+
+nav ul li a {
+  text-decoration: none;
+}
+nav ul li a:visited {
+  color: var(--primary-color-1);
+  text-decoration: none;
 }
 
 body {
