@@ -39,7 +39,6 @@ Util.buildClassificationGrid = async function(data){
         +'" alt="Image of '+ vehicle.inv_make + ' ' + vehicle.inv_model 
         +' on CSE Motors" /></a>'
         grid += '<div class="namePrice">'
-        grid += '<hr />'
         grid += '<h2>'
         grid += '<a href="../../inv/detail/' + vehicle.inv_id +'" title="View ' 
         + vehicle.inv_make + ' ' + vehicle.inv_model + ' details">' 
@@ -55,6 +54,32 @@ Util.buildClassificationGrid = async function(data){
       grid += '<p class="notice">Sorry, no matching vehicles could be found.</p>'
     }
     return grid
+  }
+
+/* **************************************
+* Build the vehicleDetails view HTML
+* ************************************ */
+Util.buildVehicleDetails = async function(data){
+    let vehicle
+    if(data){
+    let vehicleTitle = `${data.inv_year} ${data.inv_make} ${data.inv_model}`
+    vehicle =  '<div id="vehicleDetailsMain">'
+    vehicle += '<div id="vehicleDetailsImg">'
+    vehicle += `<img src="${data.inv_image}" alt= "${vehicleTitle}">`        
+    vehicle += '</div>'
+    vehicle += '<div id="vehicleDetailsText">'   
+    vehicle += `<h2 id="vehiclePrice">$${new Intl.NumberFormat('en-US').format(data.inv_price)}</h2>`         
+    vehicle += '<ul id="vehicleStats">'       
+    vehicle += `<li>Mileage: ${new Intl.NumberFormat('en-US').format(data.inv_miles)}</li>`            
+    vehicle += `<li>Color: ${data.inv_color}</li>`         
+    vehicle += '</ul>'        
+    vehicle += `<p id="vehicleDescription">Description: ${data.inv_description}</p>`  
+    vehicle += '</div>'    
+    vehicle += '</div>'
+    } else { 
+      vehicle = '<p class="notice">Sorry, that vehicle is no longer in our inventory.</p>'
+    }
+    return vehicle
   }
 
 /* ****************************************

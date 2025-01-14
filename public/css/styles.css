@@ -13,11 +13,16 @@
   --primary-color-4: #a9d3ff;
 }
 
+body { 
+  background-color: var(--primary-color-3);
+}
 #top-header {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
+  padding: 3%;
+  background-color: var(--primary-color-3);
 }
 .siteName a {
   text-decoration: none;
@@ -71,6 +76,7 @@ body {
   background-color: white;
   color: var(--primary-color-2);
   padding: 1%;
+  width: 90%
 }
 
 #hero-box {
@@ -121,6 +127,75 @@ body {
   padding: 5px;
 }
 
+/* These CSS rules are for the "sorted by inventory" screen, on Mobile*/
+
+#inv-display {
+  display: grid;
+  grid-template-columns: 1fr;
+  list-style-type: none;
+  gap: 10px;
+  padding: 0px;
+  background-color: var(--primary-color-3);
+  padding-top: 5%;
+}
+
+#inv-display li {
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#inv-display li a img {
+  width: 90%;
+}
+
+.namePrice {
+  color: var(--primary-color-1);
+  padding: 2%;
+}
+
+.namePrice h2{
+  margin: 0px;
+}
+
+.namePrice h2 a {
+  text-decoration: none;
+  color: var(--primary-color-1);
+}
+
+.namePrice h2 a:hover {
+  text-decoration: none;
+  color: var(--primary-color-1);
+}
+
+/* These CSS rules are for the "vehicle details" screen, on Mobile*/
+
+#vehicleDetailsMain {
+  display: grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--primary-color-3);
+  color: var(--primary-color-1);
+  padding: 5%;
+}
+
+#vehicleDetailsImg img {
+  width: 90%; 
+}
+
+#vehicleDetailsText {
+  text-align: left;
+}
+
+#vehiclePrice {
+  text-align: center;
+  border: 1px solid var(--primary-color-1);
+  border-radius: 5px;
+}
+
+
 
 /* These rules are for the Desktop version*/
 @media screen and (min-width: 640px) {
@@ -136,7 +211,7 @@ body {
     max-width: 95%;
     min-width: 80%;
     padding: 20px;
-    border: 6px solid var(--primary-color-1);
+    border: 6px solid var(--primary-color-3);
     border-radius: 10px;
   }
 
@@ -162,5 +237,17 @@ body {
   #upgrade-box {
     grid-column: 1;
     grid-row: 1;
+  }
+
+  /* These CSS rules are for the "sorted by inventory" screen, on Desktop*/
+
+  #inv-display {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* These CSS rules are for the "vehicle details" screen, on Desktop*/
+
+  #vehicleDetailsMain {
+    grid-template-columns: 1fr 1fr;
   }
 }
