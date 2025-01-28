@@ -82,6 +82,49 @@ Util.buildVehicleDetails = async function(data){
     return vehicle
   }
 
+Util.buildLogin = async function(){
+  let html
+  html = `
+  <form action="/account/login" method="post">
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="account_email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="account_password" pattern="^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\\s).{12,}$" required>
+        <p>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</p>
+
+        <button type="submit" id="loginButton">Login</button>
+        <p>No Account? <a href="/account/register">Sign-up</a></p>
+    </form>
+    <script src="/js/script.js"></script>
+  `
+  return html
+}
+
+Util.buildRegister = async function(){
+  let html
+  html = `
+  <form action="/account/register" method="post">
+    <label for="account_firstname">First Name:</label>
+        <input type="text" id="account_firstname" name="account_firstname" required>
+
+        <label for="account_lastname">Last Name:</label>
+        <input type="text" id="account_lastname" name="account_lastname" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" name="account_email" required>
+
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="account_password" pattern="^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\\s).{12,}$" required>
+        <p>Passwords must be at least 12 characters and contain at least 1 number, 1 capital letter and 1 special character</p>
+
+        <button type="submit" id="registerButton">Register</button>
+    </form>
+    <script src="/js/script.js"></script>
+  `
+  return html
+}
+
 /* ****************************************
  * Middleware For Handling Errors
  * Wrap other function in this for 

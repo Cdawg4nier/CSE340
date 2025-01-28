@@ -195,7 +195,53 @@ body {
   border-radius: 5px;
 }
 
+form {
+  margin: 1% 2%;
+  background-color: var(--primary-color-3);
+  padding: 2%;
+  border-radius: 5px;
+}
 
+form label {
+  display: block;
+  font-size: 20px;
+  color: var(--primary-color-1);
+  padding-top: .2rem;
+}
+
+form input[type=email], input[type=password], input[type=text]{
+  display: block;
+  margin: 5px 0 15px 0;
+  padding: 15px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  border-left-width: 5px;
+  border-left-color: #555;
+  font-size: 1rem;
+  color: #3D405B;
+  width: 40%;
+}
+
+
+form button {
+  border: none;
+  text-align: center;
+  background-color: var(--primary-color-2);
+  color: var(--primary-color-1);
+  border-radius: 10px;
+  padding: .75rem 1.5rem;
+  margin: 15px 0;
+  font-size: 20px;
+  width: 40%;
+}
+
+form p {
+  color: var(--primary-color-1);
+}
+
+form a {
+  color: var(--primary-color-4);
+}
 
 /* These rules are for the Desktop version*/
 @media screen and (min-width: 640px) {
