@@ -37,4 +37,62 @@ invCont.buildByInvId = async function (req, res, next) {
     })
   }
 
+invCont.buildManagement = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("./inventory/management", {
+    title: "Management",
+    nav,
+    errors: null,
+  })
+}
+
+
+invCont.buildNewClassification = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("./inventory/add-classification", {
+    title: "Add Classification",
+    nav,
+    errors: null,
+  })
+}
+
+invCont.buildNewInventoryItem = async function (req, res, next) {
+  let nav = await utilities.getNav()
+  res.render("./inventory/add-inventory", {
+    title: "Add Inventory Item",
+    nav,
+    errors: null,
+  })
+}
+
+invCont.createClassification = async function(req, res) {
+    
+    const { classification } = req.body
+
+    const classResult = await invModel.addClassification(
+      classification
+    )
+  
+    let nav = await utilities.getNav()
+    if (classResult) {
+      
+      res.status(201).render("./inventory/add-classification", { 
+        title: "Add Classification",
+        nav,
+        errors: null,
+      })
+      req.flash(
+        "notice",
+        `Congratulations, you\'ve created the  ${classification} classification.`
+      )
+    } else {
+      req.flash("notice", "Sorry, the process failed.")
+      res.status(501).render("./inventory/add-classification", {
+        title: "Add Classification",
+        nav,
+        errors: null,
+      })
+    }
+  }
+
 module.exports = invCont

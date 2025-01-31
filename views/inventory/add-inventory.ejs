@@ -1,0 +1,25 @@
+<% if (title) { %>
+    <h1>
+        <%= title %>
+    </h1>
+    <% } else { res.redirect('/') } %>
+
+        <% messages() %>
+            <% if (errors) { %>
+                <ul class="notice">
+                    <% errors.array().forEach(error=> { %>
+                        <li>
+                            <%= error.msg %>
+                        </li>
+                        <% }) %>
+                </ul>
+                <% } %>
+
+                    <form action="#" method="post">
+                        <label for="Make">New Classification</label>
+                        <input type="text" id="classification" name="classification" pattern="/^[a-zA-Z]+$/" required>
+                        <p>Classifications must not contain spaces or special characters of any kind</p>
+
+                        <button type="submit" id="addClassificationButton">Add Classification</button>
+                    </form>
+                    <script src="/js/script.js"></script>

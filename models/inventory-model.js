@@ -40,4 +40,24 @@ async function getInventoryItemByInvID(inv_id) {
     console.error("getInventoryItemByInvID error " + error)
   }
 } 
-module.exports = {getClassifications, getInventoryByClassificationId, getInventoryItemByInvID};
+
+async function addClassification(classification) {
+  try {
+    const checkQuery = 'SELECT 1 FROM classification WHERE classification_name = $1';
+    const checkResult = await pool.query(checkQuery, [classification]);
+
+    if (checkResult.rows.length === 0) {
+      const insertQuery = 'INSERT INTO classification (classification_name) VALUES ($1)';
+      await pool.query(insertQuery, [classification]);
+    } else {
+    }
+  } catch (error) {
+    console.error("addClassification error" + error)
+  }
+
+}
+
+async function addInventoryItem(lotsaStuff) {
+
+}
+module.exports = {getClassifications, getInventoryByClassificationId, getInventoryItemByInvID, addClassification, addInventoryItem};
