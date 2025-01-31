@@ -66,6 +66,7 @@ invCont.buildNewInventoryItem = async function (req, res, next) {
 }
 
 invCont.createClassification = async function(req, res) {
+  console.log("I am starting the createClassification function")
     
     const { classification } = req.body
 
@@ -73,6 +74,7 @@ invCont.createClassification = async function(req, res) {
       classification
     )
   
+    console.log("I have just asked the model to create a classification")
     let nav = await utilities.getNav()
     if (classResult) {
       

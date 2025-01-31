@@ -26,10 +26,9 @@ validate.classificationRules = () => {
     console.log(`Here is the classification I am working with: ${classification}`)
     let errors = []
     errors = validationResult(req)
-    console.log(`I have just checked for errors. Here is what I found: ${errors}`)
     if (!errors.isEmpty()) {
       let nav = await utilities.getNav()
-      res.render("inv/classification", {
+      res.render("inventory/add-classification", {
         errors,
         title: "Add Classification",
         nav,
