@@ -26,4 +26,11 @@ router.post(
     utilities.handleErrors(invController.createClassification)
   )
 
+  router.post(
+    "/newinv",
+    invValidate.inventoryRules(),
+    invValidate.checkInvData,
+    utilities.handleErrors(invController.createInventoryItem)
+  )
+
 module.exports = router;

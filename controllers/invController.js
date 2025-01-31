@@ -58,23 +58,22 @@ invCont.buildNewClassification = async function (req, res, next) {
 
 invCont.buildNewInventoryItem = async function (req, res, next) {
   let nav = await utilities.getNav()
+  let classDropdown = await utilities.buildClassificationList()
   res.render("./inventory/add-inventory", {
     title: "Add Inventory Item",
     nav,
     errors: null,
+    classDropdown,
   })
 }
 
 invCont.createClassification = async function(req, res) {
-  console.log("I am starting the createClassification function")
     
     const { classification } = req.body
 
     const classResult = await invModel.addClassification(
       classification
     )
-  
-    console.log("I have just asked the model to create a classification")
     let nav = await utilities.getNav()
     if (classResult) {
       
@@ -96,5 +95,46 @@ invCont.createClassification = async function(req, res) {
       })
     }
   }
+
+invCont.createInventoryItem = async function(req, res) {
+    
+  const { inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id} = req.body
+
+    const classResult = await invModel.addInventoryItem(inv_make, 
+      inv_model, 
+      inv_year, 
+      inv_description, 
+      inv_image, 
+      inv_thumbnail, 
+      inv_price, 
+      inv_miles, 
+      inv_color, 
+      classification_id
+
+    )
+  
+    let nav = await utilities.getNav()
+    classDropdown = await utilities.buildClassificationList()
+    if (classResult) {
+      
+      res.status(201).render("./inventory/management", { 
+        title: "Inventory Management",
+        nav,
+        errors: null,
+      })
+      req.flash(
+        "notice",
+        `Congratulations, you\'ve added a new inventory item`
+      )
+    } else {
+      req.flash("notice", "Sorry, the process failed.")
+      res.status(501).render("./inventory/add-inventory", {
+        title: "Add Classification",
+        nav,
+        errors: null,
+      })
+    }
+  }
+
 
 module.exports = invCont

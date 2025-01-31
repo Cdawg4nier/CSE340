@@ -57,7 +57,20 @@ async function addClassification(classification) {
 
 }
 
-async function addInventoryItem(lotsaStuff) {
+async function addInventoryItem(inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id) {
+  const insertQuery = `
+    INSERT INTO inventory (inv_make, inv_model, inv_year, inv_description, inv_image, inv_thumbnail, inv_price, inv_miles, inv_color, classification_id)
+    VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+  `;
 
+  let sanitized_inv_image = '/images/no-image.png';
+  let sanitized_inv_thumbnail = '/images/no-image-tn.png'
+
+  try {
+    const checkResult = await pool.query(insertQuery, [inv_make, inv_model, inv_year, inv_description, sanitized_inv_image, sanitized_inv_thumbnail, inv_price, inv_miles, inv_color, classification_id]);
+    return checkResult;
+  } catch (error) {
+    console.error("addInventoryItem error:", error.message);
+  }
 }
 module.exports = {getClassifications, getInventoryByClassificationId, getInventoryItemByInvID, addClassification, addInventoryItem};
